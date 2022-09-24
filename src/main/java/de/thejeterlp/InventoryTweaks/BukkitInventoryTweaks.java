@@ -20,13 +20,11 @@ public class BukkitInventoryTweaks extends JavaPlugin {
         Config.load();
 
         if (Config.CHECK_UPDATE.getBoolean()) {
-            //Disabled for now as there is no ID yet.
-            updatechecker = new UpdateChecker(this, 00000);
+            updatechecker = new UpdateChecker(this, 105437);
         }
 
         if (Config.B_STATS.getBoolean()) {
-            //Disabled for now, no ID yet
-            Metrics metrics = new Metrics(this, 0000);
+            Metrics metrics = new Metrics(this, 16495);
             getLogger().info("Thanks for using bstats, it was enabled!");
         }
 
