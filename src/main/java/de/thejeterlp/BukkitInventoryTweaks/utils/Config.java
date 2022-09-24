@@ -45,7 +45,8 @@ public enum Config {
     SHOVEL_LIST("ItemLists.Shovels", ItemGroups.getShovels(), "All the shovels that can be replaced with each other"),
     AXE_LIST("ItemLists.Axe", ItemGroups.getAxes(), "All the axes that can be replaced with each other"),
     HOE_LIST("ItemLists.Hoe", ItemGroups.getHoes(), "All the hoes that can be replaced with each other"),
-    FOOD_LIST("ItemList.Food", ItemGroups.getEdibles(), "All the food that can be replaced with each other");
+    FOOD_LIST("ItemList.Food", ItemGroups.getEdibles(), "All the food that can be replaced with each other"),
+    ;
 
     private final Object value;
     private final String path;
