@@ -29,8 +29,8 @@ import java.util.List;
 
 public enum Config {
 
-    CHECK_UPDATE("check-for-updates", true, "Should the plugin check for updates by itself?"),
-    B_STATS("enable-bstats", true, "Do you want to use bstats?"),
+    CHECK_UPDATE("check-for-updates", false, "Should the plugin check for updates by itself?"),
+    B_STATS("enable-bstats", false, "Do you want to use bstats?"),
     DEBUG("debug", false, "Should the debug log be enabled?"),
     LOCALE("locale", "en-EN", "Which language do you want?"),
     ;

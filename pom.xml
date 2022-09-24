@@ -38,12 +38,16 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-shade-plugin</artifactId>
-                <version>3.1.0</version>
+                <version>3.4.0</version>
                 <configuration>
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>de.thejeterlp.clicksort</shadedPattern>
+                            <shadedPattern>de.thejeterlp.InventoryTweaks.bstats</shadedPattern>
+                        </relocation>
+                        <relocation>
+                            <pattern>de.jeter.updatechecker</pattern>
+                            <shadedPattern>de.thejeterlp.InventoryTweaks.updatechecker</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
@@ -74,13 +78,13 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19.2-R0.1-SNAPSHOT</version>
+            <version>LATEST</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
             <groupId>org.bstats</groupId>
             <artifactId>bstats-bukkit</artifactId>
-            <version>1.8</version>
+            <version>3.0.0</version>
             <scope>compile</scope>
         </dependency>
         <dependency>
