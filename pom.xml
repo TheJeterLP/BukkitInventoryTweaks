@@ -5,18 +5,18 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>de.thejeterlp</groupId>
-    <artifactId>InventoryTweaks</artifactId>
-    <name>InventoryTweaks</name>
+    <artifactId>BukkitInventoryTweaks</artifactId>
+    <name>BukkitInventoryTweaks</name>
     <inceptionYear>2022</inceptionYear>
 
     <version>1.0.0</version>
     <description>ReMake of the InventoryTweaks mod but as a Plugin</description>
-    <url>https://github.com/TheJeterLP/ClickSort</url>
+    <url>https://github.com/TheJeterLP/BukkitInventoryTweaks</url>
 
     <scm>
-        <connection>scm:git:git@github.com:TheJeterLP/ClickSort.git</connection>
-        <url>scm:git:git@github.com:TheJeterLP/ClickSort.git</url>
-        <developerConnection>scm:git:git@github.com:TheJeterLP/ClickSort.git</developerConnection>
+        <connection>scm:git:git@github.com:TheJeterLP/BukkitInventoryTweaks.git</connection>
+        <url>scm:git:git@github.com:TheJeterLP/BukkitInventoryTweaks.git</url>
+        <developerConnection>scm:git:git@github.com:TheJeterLP/BukkitInventoryTweaks.git</developerConnection>
     </scm>
 
     <build>

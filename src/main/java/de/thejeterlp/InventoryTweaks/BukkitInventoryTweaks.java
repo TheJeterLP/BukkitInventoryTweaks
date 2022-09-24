@@ -9,9 +9,9 @@ import de.thejeterlp.InventoryTweaks.utils.Config;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
-public class InventoryTweaks extends JavaPlugin {
+public class BukkitInventoryTweaks extends JavaPlugin {
 
-    private static InventoryTweaks INSTANCE;
+    private static BukkitInventoryTweaks INSTANCE;
     private UpdateChecker updatechecker = null;
 
     @Override
@@ -44,7 +44,7 @@ public class InventoryTweaks extends JavaPlugin {
         getLogger().info("Plugin is now disabled!");
     }
 
-    public static InventoryTweaks getInstance() {
+    public static BukkitInventoryTweaks getInstance() {
         return INSTANCE;
     }
 

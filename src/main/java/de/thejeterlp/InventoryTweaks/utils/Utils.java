@@ -1,6 +1,6 @@
 package de.thejeterlp.InventoryTweaks.utils;
 
-import de.thejeterlp.InventoryTweaks.InventoryTweaks;
+import de.thejeterlp.InventoryTweaks.BukkitInventoryTweaks;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
@@ -11,7 +11,7 @@ public class Utils {
 
     public static void debug(String msg) {
         if (Config.DEBUG.getBoolean()) {
-            InventoryTweaks.getInstance().getLogger().info(msg);
+            BukkitInventoryTweaks.getInstance().getLogger().info(msg);
         }
     }
 
