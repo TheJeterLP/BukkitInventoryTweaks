@@ -1,6 +1,6 @@
-package de.thejeterlp.InventoryTweaks.utils;
+package de.thejeterlp.BukkitInventoryTweaks.utils;
 
-import de.thejeterlp.InventoryTweaks.BukkitInventoryTweaks;
+import de.thejeterlp.BukkitInventoryTweaks.BukkitInventoryTweaks;
 import org.bukkit.Material;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;

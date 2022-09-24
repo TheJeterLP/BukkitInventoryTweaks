@@ -1,7 +1,7 @@
-package de.thejeterlp.InventoryTweaks.events.replaceItems;
+package de.thejeterlp.BukkitInventoryTweaks.events.replaceItems;
 
-import de.thejeterlp.InventoryTweaks.utils.Config;
-import de.thejeterlp.InventoryTweaks.utils.Utils;
+import de.thejeterlp.BukkitInventoryTweaks.utils.Config;
+import de.thejeterlp.BukkitInventoryTweaks.utils.Utils;
 import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
