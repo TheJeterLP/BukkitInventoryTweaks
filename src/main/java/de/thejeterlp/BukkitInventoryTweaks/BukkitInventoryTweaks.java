@@ -6,6 +6,7 @@ import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.DropItemListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.ItemBreakListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.ItemConsumeListener;
 import de.thejeterlp.BukkitInventoryTweaks.utils.Config;
+import de.thejeterlp.BukkitInventoryTweaks.utils.ItemGroups;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -28,6 +29,8 @@ public class BukkitInventoryTweaks extends JavaPlugin {
             getLogger().info("Thanks for using bstats, it was enabled!");
         }
 
+        ItemGroups.init();
+
         getServer().getPluginManager().registerEvents(new ItemBreakListener(), this);
         getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
@@ -44,6 +47,10 @@ public class BukkitInventoryTweaks extends JavaPlugin {
 
     public static BukkitInventoryTweaks getInstance() {
         return INSTANCE;
+    }
+
+    public UpdateChecker getUpdateChecker() {
+        return this.updatechecker;
     }
 
 }
