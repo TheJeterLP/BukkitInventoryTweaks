@@ -16,8 +16,8 @@ public class ItemBreakListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onItemBreak(PlayerItemBreakEvent e) {
-        if (!Config.REPLACE_ITEMS_ON_BREAK.getBoolean()) return;
         Player p = e.getPlayer();
+        if (!Config.REPLACE_ITEMS_ON_BREAK.getBoolean() || !p.hasPermission("bit.replaceitems.itembreak")) return;
         if (p.getGameMode() == GameMode.CREATIVE && !Config.REPLACE_ITEMS_IN_CREATIVE.getBoolean()) return;
         ItemStack item = e.getBrokenItem();
         PlayerInventory inv = p.getInventory();

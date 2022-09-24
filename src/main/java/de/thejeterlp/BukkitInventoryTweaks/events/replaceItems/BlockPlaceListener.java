@@ -17,9 +17,8 @@ public class BlockPlaceListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onBlockPlace(BlockPlaceEvent e) {
-        if (e.isCancelled()) return;
-        if (!Config.REPLACE_ITEMS_ON_BLOCK_PLACE.getBoolean()) return;
         Player p = e.getPlayer();
+        if (e.isCancelled() || !Config.REPLACE_ITEMS_ON_BLOCK_PLACE.getBoolean() || !p.hasPermission("bit.replaceitems.blockplace")) return;
         if (p.getGameMode() == GameMode.CREATIVE && !Config.REPLACE_ITEMS_IN_CREATIVE.getBoolean()) return;
         Block placed = e.getBlockPlaced();
         ItemStack item = new ItemStack(placed.getType(), 1);
@@ -31,6 +30,7 @@ public class BlockPlaceListener implements Listener {
         Utils.debug("Item held before actually removing: " + held);
         if (held.getAmount() == 1) {
             held = null;
+            inv.setItem(inv.getHeldItemSlot(), new ItemStack(Material.AIR));
             Utils.debug("Setting held to null!");
         }
 
