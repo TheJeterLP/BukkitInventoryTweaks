@@ -18,7 +18,7 @@
  */
 package de.thejeterlp.InventoryTweaks.utils;
 
-import de.thejeterlp.InventoryTweaks.InventoryTweaks;
+import de.thejeterlp.InventoryTweaks.BukkitInventoryTweaks;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -45,7 +45,7 @@ public enum Config {
     private final String path;
     private final String description;
     private static YamlConfiguration cfg;
-    private static final File f = new File(InventoryTweaks.getInstance().getDataFolder(), "config.yml");
+    private static final File f = new File(BukkitInventoryTweaks.getInstance().getDataFolder(), "config.yml");
 
     Config(String path, Object val, String description) {
         this.path = path;
@@ -82,7 +82,7 @@ public enum Config {
     }
 
     public static void load() {
-        InventoryTweaks.getInstance().getDataFolder().mkdirs();
+        BukkitInventoryTweaks.getInstance().getDataFolder().mkdirs();
         reload(false);
         List<String> header = new ArrayList<>();
         for (Config c : values()) {
