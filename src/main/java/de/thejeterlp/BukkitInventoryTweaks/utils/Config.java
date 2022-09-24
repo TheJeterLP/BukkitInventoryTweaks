@@ -32,7 +32,7 @@ public enum Config {
     CHECK_UPDATE("check-for-updates", true, "Should the plugin check for updates by itself?"),
     B_STATS("enable-bstats", true, "Do you want to use bstats?"),
     DEBUG("debug", false, "Should the debug log be enabled? WARNING: This will SPAM your log files, use ONLY when needed."),
-    //LOCALE("locale", "en-EN", "Which language do you want?"),
+    LOCALE("locale", "en-EN", "Which language do you want?"),
     REPLACE_ITEMS_IN_CREATIVE("ReplaceItems.replaceInCreative", false, "Should the items be replaced in creative mode too?"),
     REPLACE_ITEMS_PLAY_SOUND("ReplaceItems.playSound", true, "Should a sound be played to the player after the item was replaced?"),
     REPLACE_ITEMS_EXACT("ReplaceItems.needsToMatchExactly", false, "Does the item to replace need to match exactly? (For ex. should a woodenpickaxe be replaced by a diamond picakxe)"),
