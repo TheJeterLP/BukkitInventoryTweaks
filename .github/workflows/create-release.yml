@@ -3,7 +3,7 @@ name: Create Release
 on:
   push:
     branches: 
-      - master
+      - main
 
 jobs:
   create-release:
@@ -31,9 +31,9 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: InventoryTweaks ${{ github.event.head_commit.message }}
+          name: BukkitInventoryTweaks ${{ github.event.head_commit.message }}
           tag_name: ${{ github.event.head_commit.message }}
-          files: target/InventoryTweaks.jar
+          files: target/BukkitInventoryTweaks.jar
           generate_release_notes: true
           prerelease: true
       - name: Create Release
@@ -43,7 +43,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         with:
-          name: InventoryTweaks ${{ github.event.head_commit.message }}
+          name: BukkitInventoryTweaks ${{ github.event.head_commit.message }}
           tag_name: ${{ github.event.head_commit.message }}
-          files: target/InventoryTweaks.jar
+          files: target/BukkitInventoryTweaks.jar
           generate_release_notes: true
