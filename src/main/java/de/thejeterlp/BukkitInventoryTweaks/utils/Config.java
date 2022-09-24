@@ -36,7 +36,7 @@ public enum Config {
     //LOCALE("locale", "en-EN", "Which language do you want?"),
     REPLACE_ITEMS_IN_CREATIVE("ReplaceItems.replaceInCreative", false, "Should the items be replaced in creative mode too?"),
     REPLACE_ITEMS_PLAY_SOUND("ReplaceItems.playSound", true, "Should a sound be played to the player after the item was replaced?"),
-    //REPLACE_ITEMS_EXACT("ReplaceItems.needsToMatchExactly", false, "Does the item to replace need to match exactly? (For ex. should a woodenpickaxe be replaced by a diamond picakxe)"),
+    REPLACE_ITEMS_EXACT("ReplaceItems.needsToMatchExactly", false, "Does the item to replace need to match exactly? (For ex. should a woodenpickaxe be replaced by a diamond picakxe)"),
     REPLACE_ITEMS_ON_BREAK("ReplaceItems.onBreak", true, "Should the item be replaced after it breaks?"),
     REPLACE_ITEMS_ON_CONSUME("ReplaceItems.onConsume", true, "Should the item be replaced when its consumed?"),
     REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", false, "Should the item be replaced after it has been dropped by the player?"),

@@ -86,7 +86,7 @@ public class ItemGroups {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a valid Material! Skipping...");
                 continue;
             }
-            if (!getEdibles().contains(mat)) {
+            if (!getEdibles().contains(mat.name())) {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not consumable! Skipping...");
                 continue;
             }
@@ -142,10 +142,10 @@ public class ItemGroups {
         return HOES.contains(mat);
     }
 
-    protected static List<Material> getEdibles() {
-        List<Material> ret = new ArrayList<>();
+    protected static List<String> getEdibles() {
+        List<String> ret = new ArrayList<>();
         for (Material mat : Material.values()) {
-            if (mat.isEdible()) ret.add(mat);
+            if (mat.isEdible()) ret.add(mat.name());
         }
         return ret;
     }
