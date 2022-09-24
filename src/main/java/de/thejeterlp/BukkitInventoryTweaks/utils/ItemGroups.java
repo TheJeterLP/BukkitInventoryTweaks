@@ -94,30 +94,6 @@ public class ItemGroups {
         }
     }
 
-    public static List<Material> getSwords() {
-        return SWORDS;
-    }
-
-    public static List<Material> getPickaxes() {
-        return PICKAXES;
-    }
-
-    public static List<Material> getShovels() {
-        return SHOVELS;
-    }
-
-    public static List<Material> getAxes() {
-        return AXES;
-    }
-
-    public static List<Material> getHoes() {
-        return HOES;
-    }
-
-    public static List<Material> getFood() {
-        return FOOD;
-    }
-
     public static boolean isFood(Material mat) {
         return FOOD.contains(mat);
     }
