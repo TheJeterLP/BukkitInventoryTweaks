@@ -1,13 +1,14 @@
 package de.thejeterlp.BukkitInventoryTweaks;
 
 import de.jeter.updatechecker.UpdateChecker;
+import de.thejeterlp.BukkitInventoryTweaks.events.PlayerJoinListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.BlockPlaceListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.DropItemListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.ItemBreakListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.ItemConsumeListener;
-import de.thejeterlp.BukkitInventoryTweaks.events.sortInventory.InventoryClickListener;
 import de.thejeterlp.BukkitInventoryTweaks.utils.Config;
 import de.thejeterlp.BukkitInventoryTweaks.utils.ItemGroups;
+import de.thejeterlp.BukkitInventoryTweaks.utils.Locales;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -20,6 +21,7 @@ public class BukkitInventoryTweaks extends JavaPlugin {
     public void onEnable() {
         INSTANCE = this;
         Config.load();
+        Locales.load();
 
         if (Config.CHECK_UPDATE.getBoolean()) {
             updatechecker = new UpdateChecker(this, 105437);
@@ -37,7 +39,10 @@ public class BukkitInventoryTweaks extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new DropItemListener(), this);
 
-        getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
+        //Disabled for now due to buggy AF
+        //getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
+
+        getServer().getPluginManager().registerEvents(new PlayerJoinListener(), this);
 
         getLogger().info("Plugin is now enabled!");
     }
