@@ -1,7 +1,10 @@
 package de.thejeterlp.InventoryTweaks;
 
 import de.jeter.updatechecker.UpdateChecker;
-import de.thejeterlp.InventoryTweaks.events.ItemBreakListener;
+import de.thejeterlp.InventoryTweaks.events.replaceItems.BlockPlaceListener;
+import de.thejeterlp.InventoryTweaks.events.replaceItems.DropItemListener;
+import de.thejeterlp.InventoryTweaks.events.replaceItems.ItemBreakListener;
+import de.thejeterlp.InventoryTweaks.events.replaceItems.ItemConsumeListener;
 import de.thejeterlp.InventoryTweaks.utils.Config;
 import org.bstats.bukkit.Metrics;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -28,6 +31,9 @@ public class InventoryTweaks extends JavaPlugin {
         }
 
         getServer().getPluginManager().registerEvents(new ItemBreakListener(), this);
+        getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
+        getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
+        getServer().getPluginManager().registerEvents(new DropItemListener(), this);
 
         getLogger().info("Plugin is now enabled!");
     }

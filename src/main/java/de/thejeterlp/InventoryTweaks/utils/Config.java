@@ -19,7 +19,6 @@
 package de.thejeterlp.InventoryTweaks.utils;
 
 import de.thejeterlp.InventoryTweaks.InventoryTweaks;
-import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
@@ -33,6 +32,12 @@ public enum Config {
     B_STATS("enable-bstats", false, "Do you want to use bstats?"),
     DEBUG("debug", false, "Should the debug log be enabled?"),
     LOCALE("locale", "en-EN", "Which language do you want?"),
+    REPLACE_ITEMS_PLAY_SOUND("ReplaceItems.playSound", true, "Should a sound be played to the player after the item was replaced?"),
+    REPLACE_ITEMS_EXACT("ReplaceItems.needsToMatchExactly", false, "Does the item to replace need to match exactly? (For ex. should a woodenpickaxe be replaced by a diamond picakxe)"),
+    REPLACE_ITEMS_ON_BREAK("ReplaceItems.onBreak", true, "Should the item be replaced after it breaks?"),
+    REPLACE_ITEMS_ON_CONSUME("ReplaceItems.onConsume", true, "Should the item be replaced when its consumed?"),
+    REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", true, "Should the item be replaced after it has been dropped by the player?"),
+    REPLACE_ITEMS_ON_BLOCK_PLACE("ReplaceItems.onBlockPlace", true, "Should the item be replaced after a Block was placed?"),
     ;
 
     private final Object value;
