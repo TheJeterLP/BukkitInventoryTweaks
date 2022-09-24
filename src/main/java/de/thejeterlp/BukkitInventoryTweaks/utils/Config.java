@@ -16,9 +16,9 @@
  * along with this program; if not, write to the Free Software
  * Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.
  */
-package de.thejeterlp.InventoryTweaks.utils;
+package de.thejeterlp.BukkitInventoryTweaks.utils;
 
-import de.thejeterlp.InventoryTweaks.BukkitInventoryTweaks;
+import de.thejeterlp.BukkitInventoryTweaks.BukkitInventoryTweaks;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;

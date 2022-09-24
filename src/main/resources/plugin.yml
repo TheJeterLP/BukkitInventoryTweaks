@@ -1,5 +1,5 @@
 name: ${project.name}
-main: de.thejeterlp.InventoryTweaks.InventoryTweaks
+main: de.thejeterlp.BukkitInventoryTweaks.BukkitInventoryTweaks
 authors: [TheJeterLP]
 version: ${project.version}
 description: ReMake of the InventoryTweaks mod but as a Plugin

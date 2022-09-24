@@ -43,11 +43,11 @@
                     <relocations>
                         <relocation>
                             <pattern>org.bstats</pattern>
-                            <shadedPattern>de.thejeterlp.InventoryTweaks.bstats</shadedPattern>
+                            <shadedPattern>de.thejeterlp.BukkitInventoryTweaks.bstats</shadedPattern>
                         </relocation>
                         <relocation>
                             <pattern>de.jeter.updatechecker</pattern>
-                            <shadedPattern>de.thejeterlp.InventoryTweaks.updatechecker</shadedPattern>
+                            <shadedPattern>de.thejeterlp.BukkitInventoryTweaks.updatechecker</shadedPattern>
                         </relocation>
                     </relocations>
                 </configuration>
