@@ -19,7 +19,6 @@
 package de.thejeterlp.BukkitInventoryTweaks.utils;
 
 import de.thejeterlp.BukkitInventoryTweaks.BukkitInventoryTweaks;
-import org.bukkit.Material;
 import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
@@ -32,7 +31,7 @@ public enum Config {
 
     CHECK_UPDATE("check-for-updates", true, "Should the plugin check for updates by itself?"),
     B_STATS("enable-bstats", true, "Do you want to use bstats?"),
-    DEBUG("debug", false, "Should the debug log be enabled?"),
+    DEBUG("debug", false, "Should the debug log be enabled? WARNING: This will SPAM your log files, use ONLY when needed."),
     //LOCALE("locale", "en-EN", "Which language do you want?"),
     REPLACE_ITEMS_IN_CREATIVE("ReplaceItems.replaceInCreative", false, "Should the items be replaced in creative mode too?"),
     REPLACE_ITEMS_PLAY_SOUND("ReplaceItems.playSound", true, "Should a sound be played to the player after the item was replaced?"),
@@ -41,46 +40,11 @@ public enum Config {
     REPLACE_ITEMS_ON_CONSUME("ReplaceItems.onConsume", true, "Should the item be replaced when its consumed?"),
     REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", false, "Should the item be replaced after it has been dropped by the player?"),
     REPLACE_ITEMS_ON_BLOCK_PLACE("ReplaceItems.onBlockPlace", true, "Should the item be replaced after a Block was placed?"),
-    SWORD_LIST("ItemLists.Swords", List.of(
-            Material.WOODEN_SWORD.name(),
-            Material.STONE_SWORD.name(),
-            Material.GOLDEN_SWORD.name(),
-            Material.IRON_SWORD.name(),
-            Material.DIAMOND_SWORD.name(),
-            Material.NETHERITE_SWORD.name()),
-            "All the swords that can be replaced with each other"),
-    PICKAXE_LIST("ItemLists.Pickaxes", List.of(
-            Material.WOODEN_PICKAXE.name(),
-            Material.STONE_PICKAXE.name(),
-            Material.GOLDEN_PICKAXE.name(),
-            Material.IRON_PICKAXE.name(),
-            Material.DIAMOND_PICKAXE.name(),
-            Material.NETHERITE_PICKAXE.name()
-    ), "All the pickaxes that can be replaced with each other"),
-    SHOVEL_LIST("ItemLists.Shovels", List.of(
-            Material.WOODEN_SHOVEL.name(),
-            Material.STONE_SHOVEL.name(),
-            Material.GOLDEN_SHOVEL.name(),
-            Material.IRON_SHOVEL.name(),
-            Material.DIAMOND_SHOVEL.name(),
-            Material.NETHERITE_SHOVEL.name()
-    ), "All the shovels that can be replaced with each other"),
-    AXE_LIST("ItemLists.Axe", List.of(
-            Material.WOODEN_AXE.name(),
-            Material.STONE_AXE.name(),
-            Material.GOLDEN_AXE.name(),
-            Material.IRON_AXE.name(),
-            Material.DIAMOND_AXE.name(),
-            Material.NETHERITE_AXE.name()
-    ), "All the axes that can be replaced with each other"),
-    HOE_LIST("ItemLists.Hoe", List.of(
-            Material.WOODEN_HOE.name(),
-            Material.STONE_HOE.name(),
-            Material.GOLDEN_HOE.name(),
-            Material.IRON_HOE.name(),
-            Material.DIAMOND_HOE.name(),
-            Material.NETHERITE_HOE.name()
-    ), "All the hoes that can be replaced with each other"),
+    SWORD_LIST("ItemLists.Swords", ItemGroups.getSwords(), "All the swords that can be replaced with each other"),
+    PICKAXE_LIST("ItemLists.Pickaxes", ItemGroups.getPickaxes(), "All the pickaxes that can be replaced with each other"),
+    SHOVEL_LIST("ItemLists.Shovels", ItemGroups.getShovels(), "All the shovels that can be replaced with each other"),
+    AXE_LIST("ItemLists.Axe", ItemGroups.getAxes(), "All the axes that can be replaced with each other"),
+    HOE_LIST("ItemLists.Hoe", ItemGroups.getHoes(), "All the hoes that can be replaced with each other"),
     FOOD_LIST("ItemList.Food", ItemGroups.getEdibles(), "All the food that can be replaced with each other");
 
     private final Object value;

@@ -16,9 +16,8 @@ public class DropItemListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onItemDrop(PlayerDropItemEvent e) {
-        if (e.isCancelled()) return;
-        if (!Config.REPLACE_ITEMS_ON_DROP.getBoolean()) return;
         Player p = e.getPlayer();
+        if (e.isCancelled() || !Config.REPLACE_ITEMS_ON_DROP.getBoolean() || !p.hasPermission("bit.replaceitems.itemdropped")) return;
         if (p.getGameMode() == GameMode.CREATIVE && !Config.REPLACE_ITEMS_IN_CREATIVE.getBoolean()) return;
         ItemStack item = e.getItemDrop().getItemStack();
         PlayerInventory inv = p.getInventory();

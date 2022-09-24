@@ -16,9 +16,8 @@ public class ItemConsumeListener implements Listener {
 
     @EventHandler(priority = EventPriority.LOWEST)
     public void onItemConsume(PlayerItemConsumeEvent e) {
-        if(e.isCancelled()) return;
-        if (!Config.REPLACE_ITEMS_ON_CONSUME.getBoolean()) return;
         Player p = e.getPlayer();
+        if(e.isCancelled() || !Config.REPLACE_ITEMS_ON_CONSUME.getBoolean() || !p.hasPermission("bit.replaceitems.itemconsumed")) return;
         if (p.getGameMode() == GameMode.CREATIVE && !Config.REPLACE_ITEMS_IN_CREATIVE.getBoolean()) return;
         ItemStack item = e.getItem();
         PlayerInventory inv = p.getInventory();

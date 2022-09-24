@@ -5,6 +5,7 @@ import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.BlockPlaceListene
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.DropItemListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.ItemBreakListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.ItemConsumeListener;
+import de.thejeterlp.BukkitInventoryTweaks.events.sortInventory.InventoryClickListener;
 import de.thejeterlp.BukkitInventoryTweaks.utils.Config;
 import de.thejeterlp.BukkitInventoryTweaks.utils.ItemGroups;
 import org.bstats.bukkit.Metrics;
@@ -35,6 +36,8 @@ public class BukkitInventoryTweaks extends JavaPlugin {
         getServer().getPluginManager().registerEvents(new ItemConsumeListener(), this);
         getServer().getPluginManager().registerEvents(new BlockPlaceListener(), this);
         getServer().getPluginManager().registerEvents(new DropItemListener(), this);
+
+        getServer().getPluginManager().registerEvents(new InventoryClickListener(), this);
 
         getLogger().info("Plugin is now enabled!");
     }
