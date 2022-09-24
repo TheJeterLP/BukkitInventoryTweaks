@@ -26,7 +26,7 @@ public class ItemGroups {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a valid Material! Skipping...");
                 continue;
             }
-            if (!s.endsWith("SWORD")) {
+            if (!s.endsWith("_SWORD")) {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a sword! Skipping...");
             }
             SWORDS.add(mat);
@@ -38,7 +38,7 @@ public class ItemGroups {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a valid Material! Skipping...");
                 continue;
             }
-            if (!s.endsWith("PICKAXE")) {
+            if (!s.endsWith("_PICKAXE")) {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a pickaxe! Skipping...");
             }
             PICKAXES.add(mat);
@@ -50,7 +50,7 @@ public class ItemGroups {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a valid Material! Skipping...");
                 continue;
             }
-            if (!s.endsWith("SHOVEL")) {
+            if (!s.endsWith("_SHOVEL")) {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a shovel! Skipping...");
             }
             SHOVELS.add(mat);
@@ -62,7 +62,7 @@ public class ItemGroups {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a valid Material! Skipping...");
                 continue;
             }
-            if (!s.endsWith("AXE")) {
+            if (!s.endsWith("_AXE")) {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not an axe! Skipping...");
             }
             AXES.add(mat);
@@ -74,7 +74,7 @@ public class ItemGroups {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a valid Material! Skipping...");
                 continue;
             }
-            if (!s.endsWith("HOE")) {
+            if (!s.endsWith("_HOE")) {
                 BukkitInventoryTweaks.getInstance().getLogger().severe(s + " is not a hoe! Skipping...");
             }
             HOES.add(mat);
@@ -122,6 +122,46 @@ public class ItemGroups {
         List<String> ret = new ArrayList<>();
         for (Material mat : Material.values()) {
             if (mat.isEdible()) ret.add(mat.name());
+        }
+        return ret;
+    }
+
+    protected static List<String> getSwords() {
+        List<String> ret = new ArrayList<>();
+        for (Material mat : Material.values()) {
+            if (mat.name().endsWith("_SWORD")) ret.add(mat.name());
+        }
+        return ret;
+    }
+
+    protected static List<String> getAxes() {
+        List<String> ret = new ArrayList<>();
+        for (Material mat : Material.values()) {
+            if (mat.name().endsWith("_AXE")) ret.add(mat.name());
+        }
+        return ret;
+    }
+
+    protected static List<String> getShovels() {
+        List<String> ret = new ArrayList<>();
+        for (Material mat : Material.values()) {
+            if (mat.name().endsWith("_SHOVEL")) ret.add(mat.name());
+        }
+        return ret;
+    }
+
+    protected static List<String> getPickaxes() {
+        List<String> ret = new ArrayList<>();
+        for (Material mat : Material.values()) {
+            if (mat.name().endsWith("_PICKAXE")) ret.add(mat.name());
+        }
+        return ret;
+    }
+
+    protected static List<String> getHoes() {
+        List<String> ret = new ArrayList<>();
+        for (Material mat : Material.values()) {
+            if (mat.name().endsWith("_HOE")) ret.add(mat.name());
         }
         return ret;
     }
