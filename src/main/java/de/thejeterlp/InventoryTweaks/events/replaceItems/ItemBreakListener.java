@@ -2,6 +2,7 @@ package de.thejeterlp.InventoryTweaks.events.replaceItems;
 
 import de.thejeterlp.InventoryTweaks.utils.Config;
 import de.thejeterlp.InventoryTweaks.utils.Utils;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -17,6 +18,7 @@ public class ItemBreakListener implements Listener {
     public void onItemBreak(PlayerItemBreakEvent e) {
         if (!Config.REPLACE_ITEMS_ON_BREAK.getBoolean()) return;
         Player p = e.getPlayer();
+        if (p.getGameMode() == GameMode.CREATIVE && !Config.REPLACE_ITEMS_IN_CREATIVE.getBoolean()) return;
         ItemStack item = e.getBrokenItem();
         PlayerInventory inv = p.getInventory();
         inv.setItem(inv.getHeldItemSlot(), new ItemStack(Material.AIR));
