@@ -1,0 +1,7 @@
+name: InventoryTweaks
+main: de.thejeterlp.InventoryTweaks.InventoryTweaks
+authors: [TheJeterLP]
+version: ${project.version}
+description: ReMake of the InventoryTweaks mod but as a Plugin
+website: https://github.com/TheJeterLP/InventoryTweaks
+api-version: 1.16
