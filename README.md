@@ -1,5 +1,7 @@
 # BukkitInventoryTweaks [![Create DevBuild](https://github.com/TheJeterLP/InventoryTweaks/actions/workflows/autobuild.yml/badge.svg?branch=dev)](https://github.com/TheJeterLP/BukkitInventoryTweaks/actions/workflows/autobuild.yml)
 
+[![SpigotMC](https://raw.githubusercontent.com/TheJeterLP/BukkitInventoryTweaks/main/logo.png)](https://www.spigotmc.org/resources/inventorytweaks.105437/)
+
 A port of the famous mod to Bukkit/Spigot/Paper etc!
 
 Features:
