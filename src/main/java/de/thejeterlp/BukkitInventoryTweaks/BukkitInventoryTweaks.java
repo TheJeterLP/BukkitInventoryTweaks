@@ -1,5 +1,6 @@
 package de.thejeterlp.BukkitInventoryTweaks;
 
+import de.jeter.updatechecker.SpigotUpdateChecker;
 import de.jeter.updatechecker.UpdateChecker;
 import de.thejeterlp.BukkitInventoryTweaks.events.PlayerJoinListener;
 import de.thejeterlp.BukkitInventoryTweaks.events.replaceItems.BlockPlaceListener;
@@ -24,7 +25,7 @@ public class BukkitInventoryTweaks extends JavaPlugin {
         Locales.load();
 
         if (Config.CHECK_UPDATE.getBoolean()) {
-            updatechecker = new UpdateChecker(this, 105437);
+            updatechecker = new SpigotUpdateChecker(this, 105437);
         }
 
         if (Config.B_STATS.getBoolean()) {
