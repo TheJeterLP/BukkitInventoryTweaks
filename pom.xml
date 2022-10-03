@@ -9,7 +9,7 @@
     <name>BukkitInventoryTweaks</name>
     <inceptionYear>2022</inceptionYear>
 
-    <version>1.0.8</version>
+    <version>1.0.9</version>
     <description>ReMake of the InventoryTweaks mod but as a Plugin</description>
     <url>https://github.com/TheJeterLP/BukkitInventoryTweaks</url>
 
@@ -96,8 +96,8 @@
     </dependencies>
 
     <properties>
-        <maven.compiler.source>17</maven.compiler.source>
-        <maven.compiler.target>17</maven.compiler.target>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     </properties>
 
