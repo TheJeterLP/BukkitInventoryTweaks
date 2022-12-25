@@ -6,12 +6,74 @@ import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.PlayerInventory;
 
 public class Utils {
 
     public static void debug(String msg) {
         if (Config.DEBUG.getBoolean()) {
             BukkitInventoryTweaks.getInstance().getLogger().info(msg);
+        }
+    }
+
+    public static void replaceWithAnotherItem(Player p, ItemStack item) {
+        PlayerInventory inv = p.getInventory();
+        boolean mainHand = false;
+
+        if (inv.getItemInMainHand().isSimilar(inv.getItemInOffHand())) {
+            Utils.debug("Item in Main hand is the same as in off hand! Doing nothing...");
+            return;
+        }
+
+        ItemStack consumed = null;
+        if (inv.getItemInMainHand().isSimilar(item)) {
+            consumed = inv.getItemInMainHand();
+            mainHand = true;
+            Utils.debug("Item in Mainhand is similar to item used!");
+        } else if (inv.getItemInOffHand().isSimilar(item)) {
+            consumed = inv.getItemInOffHand();
+            Utils.debug("Item in Offhand is similar to item used!");
+        }
+
+        if (consumed == null) return;
+
+        Utils.debug("Item used before actually removing: " + consumed);
+        if (consumed.getAmount() == 1) {
+            consumed = null;
+            if (mainHand) {
+                inv.setItemInMainHand(new ItemStack(Material.AIR));
+                Utils.debug("Held after removing: " + inv.getItemInMainHand());
+            } else {
+                inv.setItemInOffHand(new ItemStack(Material.AIR));
+                Utils.debug("Held after removing: " + inv.getItemInOffHand());
+            }
+        } else if (consumed.getAmount() == 0) {
+            Utils.debug("Amount of held is already 0, no removing necessary.");
+        } else {
+            Utils.debug("Amount of held is bigger than 1, no replacing of ItemStack necessary.");
+        }
+
+
+        //Ensure that we dropped everything of that itemstack
+        if (consumed == null || consumed.getType() == Material.AIR) {
+            ItemStack target = Utils.getMatchingItemIfExisting(item, inv);
+            if (target == null) {
+                Utils.debug("No matching item found in Inventory.");
+                return;
+            }
+
+            Utils.debug("Setting targetslot to AIR!");
+            inv.setItem(inv.first(target), new ItemStack(Material.AIR));
+
+            if (mainHand) {
+                Utils.debug("Matching Item found! Replacing mainHand with " + target);
+                inv.setItemInMainHand(target);
+            } else {
+                Utils.debug("Matching Item found! Replacing offHand with " + target);
+                inv.setItemInOffHand(target);
+            }
+
+            Utils.playSound(p);
         }
     }
 
@@ -22,7 +84,7 @@ public class Utils {
         if (inv.contains(m, 1)) {
             for (ItemStack stack : inv.getContents()) {
                 if (stack == null || stack.getType() != m) continue;
-                //Ensure stack is the same material as the broken item here.
+                //Ensure stack is the same material as the broken item here
                 return stack;
             }
         }

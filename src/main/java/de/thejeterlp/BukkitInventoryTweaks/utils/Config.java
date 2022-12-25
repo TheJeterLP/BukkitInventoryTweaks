@@ -38,7 +38,7 @@ public enum Config {
     REPLACE_ITEMS_EXACT("ReplaceItems.needsToMatchExactly", false, "Does the item to replace need to match exactly? (For ex. should a woodenpickaxe be replaced by a diamond picakxe)"),
     REPLACE_ITEMS_ON_BREAK("ReplaceItems.onBreak", true, "Should the item be replaced after it breaks?"),
     REPLACE_ITEMS_ON_CONSUME("ReplaceItems.onConsume", true, "Should the item be replaced when its consumed?"),
-    REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", false, "Should the item be replaced after it has been dropped by the player?"),
+    REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", false, "Should the item be replaced after it has been dropped by the player? "),
     REPLACE_ITEMS_ON_BLOCK_PLACE("ReplaceItems.onBlockPlace", true, "Should the item be replaced after a Block was placed?"),
     SWORD_LIST("ItemLists.Swords", ItemGroups.getSwords(), "All the swords that can be replaced with each other"),
     PICKAXE_LIST("ItemLists.Pickaxes", ItemGroups.getPickaxes(), "All the pickaxes that can be replaced with each other"),
@@ -48,16 +48,58 @@ public enum Config {
     FOOD_LIST("ItemList.Food", ItemGroups.getEdibles(), "All the food that can be replaced with each other"),
     ;
 
+    private static final File f = new File(BukkitInventoryTweaks.getInstance().getDataFolder(), "config.yml");
+    private static YamlConfiguration cfg;
     private final Object value;
     private final String path;
     private final String description;
-    private static YamlConfiguration cfg;
-    private static final File f = new File(BukkitInventoryTweaks.getInstance().getDataFolder(), "config.yml");
 
     Config(String path, Object val, String description) {
         this.path = path;
         this.value = val;
         this.description = description;
+    }
+
+    public static ConfigurationSection getConfigurationSection(String path) {
+        return cfg.getConfigurationSection(path);
+    }
+
+    public static void load() {
+        BukkitInventoryTweaks.getInstance().getDataFolder().mkdirs();
+        reload(false);
+        List<String> header = new ArrayList<>();
+        header.add("Thanks for installing BukkitInventoryTweaks by TheJeterLP!");
+        header.add("Please report any bugs you may encounter at my discord under:");
+        header.add("https://discord.com/invite/JwaSHRk6bR");
+        header.add("-------------------------------Descriptions--------------------------------------");
+        for (Config c : values()) {
+            header.add(c.getPath() + ": " + c.getDescription());
+            if (!cfg.contains(c.getPath())) {
+                c.set(c.getDefaultValue(), false);
+            }
+        }
+        try {
+            cfg.options().setHeader(header);
+        } catch (NoSuchMethodError e) {
+            String headerString = "";
+            for (String s : header) {
+                headerString += s + System.lineSeparator();
+            }
+            cfg.options().header(headerString);
+        }
+        try {
+            cfg.save(f);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void reload(boolean complete) {
+        if (!complete) {
+            cfg = YamlConfiguration.loadConfiguration(f);
+            return;
+        }
+        load();
     }
 
     public String getPath() {
@@ -92,36 +134,6 @@ public enum Config {
         return cfg.getStringList(path);
     }
 
-    public static ConfigurationSection getConfigurationSection(String path) {
-        return cfg.getConfigurationSection(path);
-    }
-
-    public static void load() {
-        BukkitInventoryTweaks.getInstance().getDataFolder().mkdirs();
-        reload(false);
-        List<String> header = new ArrayList<>();
-        for (Config c : values()) {
-            header.add(c.getPath() + ": " + c.getDescription());
-            if (!cfg.contains(c.getPath())) {
-                c.set(c.getDefaultValue(), false);
-            }
-        }
-        try {
-            cfg.options().setHeader(header);
-        } catch (NoSuchMethodError e) {
-            String headerString = "";
-            for (String s : header) {
-                headerString += s + System.lineSeparator();
-            }
-            cfg.options().header(headerString);
-        }
-        try {
-            cfg.save(f);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public void set(Object value, boolean save) {
         cfg.set(path, value);
         if (save) {
@@ -132,13 +144,5 @@ public enum Config {
             }
             reload(false);
         }
-    }
-
-    public static void reload(boolean complete) {
-        if (!complete) {
-            cfg = YamlConfiguration.loadConfiguration(f);
-            return;
-        }
-        load();
     }
 }
