@@ -38,7 +38,7 @@ public enum Config {
     REPLACE_ITEMS_EXACT("ReplaceItems.needsToMatchExactly", false, "Does the item to replace need to match exactly? (For ex. should a woodenpickaxe be replaced by a diamond picakxe)"),
     REPLACE_ITEMS_ON_BREAK("ReplaceItems.onBreak", true, "Should the item be replaced after it breaks?"),
     REPLACE_ITEMS_ON_CONSUME("ReplaceItems.onConsume", true, "Should the item be replaced when its consumed?"),
-    REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", false, "Should the item be replaced after it has been dropped by the player?"),
+    REPLACE_ITEMS_ON_DROP("ReplaceItems.onDrop", false, "Should the item be replaced after it has been dropped by the player? "),
     REPLACE_ITEMS_ON_BLOCK_PLACE("ReplaceItems.onBlockPlace", true, "Should the item be replaced after a Block was placed?"),
     SWORD_LIST("ItemLists.Swords", ItemGroups.getSwords(), "All the swords that can be replaced with each other"),
     PICKAXE_LIST("ItemLists.Pickaxes", ItemGroups.getPickaxes(), "All the pickaxes that can be replaced with each other"),
@@ -68,6 +68,10 @@ public enum Config {
         BukkitInventoryTweaks.getInstance().getDataFolder().mkdirs();
         reload(false);
         List<String> header = new ArrayList<>();
+        header.add("Thanks for installing BukkitInventoryTweaks by TheJeterLP!");
+        header.add("Please report any bugs you may encounter at my discord under:");
+        header.add("https://discord.com/invite/JwaSHRk6bR");
+        header.add("-------------------------------Descriptions--------------------------------------");
         for (Config c : values()) {
             header.add(c.getPath() + ": " + c.getDescription());
             if (!cfg.contains(c.getPath())) {
