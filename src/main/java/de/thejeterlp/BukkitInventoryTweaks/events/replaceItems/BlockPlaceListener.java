@@ -27,26 +27,62 @@ public class BlockPlaceListener implements Listener {
 
         Utils.debug(e.getClass().getName() + " was fired! " + p.getName() + " Placed " + item);
 
-        ItemStack held = inv.getItem(inv.getHeldItemSlot());
-        if (!held.getType().isBlock()) return;
+        ItemStack held = null;
+        boolean mainHand = false;
 
+        if (inv.getItemInMainHand().isSimilar(inv.getItemInOffHand())) {
+            Utils.debug("Item in Main hand is the same as in off hand! Doing nothing...");
+            return;
+        }
+
+        if (inv.getItemInMainHand().isSimilar(item)) {
+            held = inv.getItemInMainHand();
+            mainHand = true;
+            Utils.debug("Item in Mainhand is similar to block placed!");
+        } else if (inv.getItemInOffHand().isSimilar(item)) {
+            held = inv.getItemInOffHand();
+            Utils.debug("Item in Offhand is similar to block placed!");
+        }
+
+        if (held == null || !held.getType().isBlock()) return;
 
         Utils.debug("Item held before actually removing: " + held);
         if (held.getAmount() == 1) {
             held = null;
-            inv.setItem(inv.getHeldItemSlot(), new ItemStack(Material.AIR));
-            Utils.debug("Setting held to null!");
+            if (mainHand) {
+                inv.setItemInMainHand(new ItemStack(Material.AIR));
+                Utils.debug("Held after removing: " + inv.getItemInMainHand());
+            } else {
+                inv.setItemInOffHand(new ItemStack(Material.AIR));
+                Utils.debug("Held after removing: " + inv.getItemInOffHand());
+            }
+        } else if(held.getAmount() == 0) {
+            Utils.debug("Amount of held is already 0, no removing necessary.");
+        } else {
+            Utils.debug("Amount of held is bigger than 1, no replacing of ItemStack necessary.");
         }
 
 
         //Ensure that we dropped everything of that itemstack
         if (held == null || held.getType() == Material.AIR) {
             ItemStack target = Utils.getMatchingItemIfExisting(item, inv);
-            if (target == null) return;
+            if (target == null) {
+                Utils.debug("No matching item found in Inventory.");
+                return;
+            }
+
+            Utils.debug("Setting target to AIR!");
             inv.setItem(inv.first(target), new ItemStack(Material.AIR));
-            inv.setItem(inv.getHeldItemSlot(), target);
+
+            if (mainHand) {
+                Utils.debug("Matching Item found! Replacing mainHand with " + target);
+                inv.setItemInMainHand(target);
+            } else {
+                Utils.debug("Matching Item found! Replacing offHand with " + target);
+                inv.setItemInOffHand(target);
+            }
+
             Utils.playSound(p);
-            Utils.debug("Matching Item found! Replacing with " + target);
         }
     }
 
