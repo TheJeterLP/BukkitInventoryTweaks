@@ -25,22 +25,63 @@ public class ItemConsumeListener implements Listener {
 
         Utils.debug(e.getClass().getName() + " was fired! " + p.getName() + " consumed " + item);
 
-        if (item.getAmount() > 1) return;
+        boolean mainHand = false;
 
-        ItemStack consumed = inv.getItem(e.getHand());
-        if (consumed == null) {
+        if (inv.getItemInMainHand().isSimilar(inv.getItemInOffHand())) {
+            Utils.debug("Item in Main hand is the same as in off hand! Doing nothing...");
             return;
         }
-        ItemStack cloneConsumed = consumed.clone();
-        consumed.setType(Material.AIR);
 
-        ItemStack target = Utils.getMatchingItemIfExisting(item, inv);
-        if (target == null) return;
-        ItemStack copy = target.clone();
-        target.setType(Material.AIR);
-        inv.setItem(e.getHand(), copy);
-        Utils.playSound(p);
-        Utils.debug("Matching Item found! Replacing " + cloneConsumed + " with " + copy);
+        ItemStack consumed = null;
+        if (inv.getItemInMainHand().isSimilar(item)) {
+            consumed = inv.getItemInMainHand();
+            mainHand = true;
+            Utils.debug("Item in Mainhand is similar to item consumed!");
+        } else if (inv.getItemInOffHand().isSimilar(item)) {
+            consumed = inv.getItemInOffHand();
+            Utils.debug("Item in Offhand is similar to item consumed!");
+        }
+
+        if (consumed == null || !consumed.getType().isEdible()) return;
+
+        Utils.debug("Item consumed before actually removing: " + consumed);
+        if (consumed.getAmount() == 1) {
+            consumed = null;
+            if (mainHand) {
+                inv.setItemInMainHand(new ItemStack(Material.AIR));
+                Utils.debug("Held after removing: " + inv.getItemInMainHand());
+            } else {
+                inv.setItemInOffHand(new ItemStack(Material.AIR));
+                Utils.debug("Held after removing: " + inv.getItemInOffHand());
+            }
+        } else if(consumed.getAmount() == 0) {
+            Utils.debug("Amount of held is already 0, no removing necessary.");
+        } else {
+            Utils.debug("Amount of held is bigger than 1, no replacing of ItemStack necessary.");
+        }
+
+
+        //Ensure that we dropped everything of that itemstack
+        if (consumed == null || consumed.getType() == Material.AIR) {
+            ItemStack target = Utils.getMatchingItemIfExisting(item, inv);
+            if (target == null) {
+                Utils.debug("No matching item found in Inventory.");
+                return;
+            }
+
+            Utils.debug("Setting target to AIR!");
+            inv.setItem(inv.first(target), new ItemStack(Material.AIR));
+
+            if (mainHand) {
+                Utils.debug("Matching Item found! Replacing mainHand with " + target);
+                inv.setItemInMainHand(target);
+            } else {
+                Utils.debug("Matching Item found! Replacing offHand with " + target);
+                inv.setItemInOffHand(target);
+            }
+
+            Utils.playSound(p);
+        }
     }
 
 }
