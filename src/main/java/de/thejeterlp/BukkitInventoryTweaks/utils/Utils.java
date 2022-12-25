@@ -35,7 +35,7 @@ public class Utils {
             Utils.debug("Item in Offhand is similar to item used!");
         }
 
-        if (consumed == null || !consumed.getType().isEdible()) return;
+        if (consumed == null) return;
 
         Utils.debug("Item used before actually removing: " + consumed);
         if (consumed.getAmount() == 1) {
