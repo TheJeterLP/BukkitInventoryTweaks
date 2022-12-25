@@ -22,7 +22,7 @@ public class Utils {
         if (inv.contains(m, 1)) {
             for (ItemStack stack : inv.getContents()) {
                 if (stack == null || stack.getType() != m) continue;
-                //Ensure stack is the same material as the broken item here.
+                //Ensure stack is the same material as the broken item here
                 return stack;
             }
         }

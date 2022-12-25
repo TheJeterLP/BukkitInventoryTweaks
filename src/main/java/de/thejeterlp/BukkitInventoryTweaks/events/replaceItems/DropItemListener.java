@@ -24,14 +24,14 @@ public class DropItemListener implements Listener {
 
         Utils.debug(e.getClass().getName() + " was fired! " + p.getName() + " dropped " + item);
 
-        ItemStack held = inv.getItem(inv.getHeldItemSlot());
+        ItemStack held = inv.getItemInMainHand();
 
         //Ensure that we dropped everything of that itemstack
         if (held == null || held.getType() == Material.AIR) {
             ItemStack target = Utils.getMatchingItemIfExisting(item, inv);
             if (target == null) return;
             inv.setItem(inv.first(target), new ItemStack(Material.AIR));
-            inv.setItem(inv.getHeldItemSlot(), target);
+            inv.setItemInMainHand(target);
             Utils.playSound(p);
             Utils.debug("Matching Item found! Replacing with " + target);
         }

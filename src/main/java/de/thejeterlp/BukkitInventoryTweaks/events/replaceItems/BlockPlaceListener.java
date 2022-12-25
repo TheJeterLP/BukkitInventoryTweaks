@@ -71,9 +71,6 @@ public class BlockPlaceListener implements Listener {
                 return;
             }
 
-            Utils.debug("Setting target to AIR!");
-            inv.setItem(inv.first(target), new ItemStack(Material.AIR));
-
             if (mainHand) {
                 Utils.debug("Matching Item found! Replacing mainHand with " + target);
                 inv.setItemInMainHand(target);
@@ -81,6 +78,9 @@ public class BlockPlaceListener implements Listener {
                 Utils.debug("Matching Item found! Replacing offHand with " + target);
                 inv.setItemInOffHand(target);
             }
+
+            Utils.debug("Setting target to AIR!");
+            inv.setItem(inv.first(target), new ItemStack(Material.AIR));
 
             Utils.playSound(p);
         }
