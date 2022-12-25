@@ -18,6 +18,10 @@ public class BukkitInventoryTweaks extends JavaPlugin {
     private static BukkitInventoryTweaks INSTANCE;
     private UpdateChecker updatechecker = null;
 
+    public static BukkitInventoryTweaks getInstance() {
+        return INSTANCE;
+    }
+
     @Override
     public void onEnable() {
         INSTANCE = this;
@@ -52,10 +56,6 @@ public class BukkitInventoryTweaks extends JavaPlugin {
     public void onDisable() {
         getServer().getScheduler().cancelTasks(this);
         getLogger().info("Plugin is now disabled!");
-    }
-
-    public static BukkitInventoryTweaks getInstance() {
-        return INSTANCE;
     }
 
     public UpdateChecker getUpdateChecker() {

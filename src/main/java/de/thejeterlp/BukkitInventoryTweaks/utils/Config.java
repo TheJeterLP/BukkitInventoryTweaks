@@ -48,16 +48,54 @@ public enum Config {
     FOOD_LIST("ItemList.Food", ItemGroups.getEdibles(), "All the food that can be replaced with each other"),
     ;
 
+    private static final File f = new File(BukkitInventoryTweaks.getInstance().getDataFolder(), "config.yml");
+    private static YamlConfiguration cfg;
     private final Object value;
     private final String path;
     private final String description;
-    private static YamlConfiguration cfg;
-    private static final File f = new File(BukkitInventoryTweaks.getInstance().getDataFolder(), "config.yml");
 
     Config(String path, Object val, String description) {
         this.path = path;
         this.value = val;
         this.description = description;
+    }
+
+    public static ConfigurationSection getConfigurationSection(String path) {
+        return cfg.getConfigurationSection(path);
+    }
+
+    public static void load() {
+        BukkitInventoryTweaks.getInstance().getDataFolder().mkdirs();
+        reload(false);
+        List<String> header = new ArrayList<>();
+        for (Config c : values()) {
+            header.add(c.getPath() + ": " + c.getDescription());
+            if (!cfg.contains(c.getPath())) {
+                c.set(c.getDefaultValue(), false);
+            }
+        }
+        try {
+            cfg.options().setHeader(header);
+        } catch (NoSuchMethodError e) {
+            String headerString = "";
+            for (String s : header) {
+                headerString += s + System.lineSeparator();
+            }
+            cfg.options().header(headerString);
+        }
+        try {
+            cfg.save(f);
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+
+    public static void reload(boolean complete) {
+        if (!complete) {
+            cfg = YamlConfiguration.loadConfiguration(f);
+            return;
+        }
+        load();
     }
 
     public String getPath() {
@@ -92,36 +130,6 @@ public enum Config {
         return cfg.getStringList(path);
     }
 
-    public static ConfigurationSection getConfigurationSection(String path) {
-        return cfg.getConfigurationSection(path);
-    }
-
-    public static void load() {
-        BukkitInventoryTweaks.getInstance().getDataFolder().mkdirs();
-        reload(false);
-        List<String> header = new ArrayList<>();
-        for (Config c : values()) {
-            header.add(c.getPath() + ": " + c.getDescription());
-            if (!cfg.contains(c.getPath())) {
-                c.set(c.getDefaultValue(), false);
-            }
-        }
-        try {
-            cfg.options().setHeader(header);
-        } catch (NoSuchMethodError e) {
-            String headerString = "";
-            for (String s : header) {
-                headerString += s + System.lineSeparator();
-            }
-            cfg.options().header(headerString);
-        }
-        try {
-            cfg.save(f);
-        } catch (IOException ex) {
-            ex.printStackTrace();
-        }
-    }
-
     public void set(Object value, boolean save) {
         cfg.set(path, value);
         if (save) {
@@ -132,13 +140,5 @@ public enum Config {
             }
             reload(false);
         }
-    }
-
-    public static void reload(boolean complete) {
-        if (!complete) {
-            cfg = YamlConfiguration.loadConfiguration(f);
-            return;
-        }
-        load();
     }
 }
