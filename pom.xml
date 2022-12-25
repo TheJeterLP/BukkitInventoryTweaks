@@ -9,7 +9,7 @@
     <name>BukkitInventoryTweaks</name>
     <inceptionYear>2022</inceptionYear>
 
-    <version>1.0.9</version>
+    <version>1.1.0</version>
     <description>ReMake of the InventoryTweaks mod but as a Plugin</description>
     <url>https://github.com/TheJeterLP/BukkitInventoryTweaks</url>
 
@@ -78,7 +78,7 @@
         <dependency>
             <groupId>org.spigotmc</groupId>
             <artifactId>spigot-api</artifactId>
-            <version>1.19.2-R0.1-SNAPSHOT</version>
+            <version>1.19.3-R0.1-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
         <dependency>
