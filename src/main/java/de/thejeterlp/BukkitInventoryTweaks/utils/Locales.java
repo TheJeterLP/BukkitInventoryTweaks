@@ -26,7 +26,7 @@ import java.io.IOException;
 
 public enum Locales {
 
-    UPDATE_FOUND("Messages.UpdateFound", "&a[BukkitInventoryTweaks]&7 A new update has been found on SpigotMC. Current version: %oldversion New version: %newversion"),
+    UPDATE_FOUND("Messages.UpdateFound", "&a[BukkitInventoryTweaks]&7 A new update has been found on SpigotMC. Current version: %oldversion New version: %newversion. Click this message to download it!"),
     ;
 
     private static final File localeFolder = new File(BukkitInventoryTweaks.getInstance().getDataFolder(), "locales");
