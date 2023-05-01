@@ -65,15 +65,22 @@ public class Utils {
             Utils.debug("Setting targetslot to AIR!");
             inv.setItem(inv.first(target), new ItemStack(Material.AIR));
 
-            if (mainHand) {
-                Utils.debug("Matching Item found! Replacing mainHand with " + target);
-                inv.setItemInMainHand(target);
-            } else {
-                Utils.debug("Matching Item found! Replacing offHand with " + target);
-                inv.setItemInOffHand(target);
-            }
+            final boolean hand = mainHand;
 
-            Utils.playSound(p);
+            BukkitInventoryTweaks.getInstance().getServer().getScheduler().scheduleSyncDelayedTask(BukkitInventoryTweaks.getInstance(), new Runnable() {
+                @Override
+                public void run() {
+                    if (hand) {
+                        Utils.debug("Matching Item found! Replacing mainHand with " + target);
+                        inv.setItemInMainHand(target);
+                    } else {
+                        Utils.debug("Matching Item found! Replacing offHand with " + target);
+                        inv.setItemInOffHand(target);
+                    }
+                    Utils.playSound(p);
+                }
+
+            }, 5);
         }
     }
 
